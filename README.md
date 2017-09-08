@@ -1,49 +1,26 @@
-# LexApp
+This is a starter template for [Ionic](http://ionicframework.com/docs/) projects.
 
-### Local Government at your fingertips.
+## How to use this template
 
-LexApp is a mobile application that connects to Legistar in order to make civic data more accessible on mobile platforms.
+*This template does not work on its own*. The shared files for each starter are found in the [ionic2-app-base repo](https://github.com/ionic-team/ionic2-app-base).
 
-## Getting Started
+To use this template, either create a new ionic project using the ionic node.js utility, or copy the files from this repository into the [Starter App Base](https://github.com/ionic-team/ionic2-app-base).
 
-The mobile application is built with the Ionic Framework.
+### With the Ionic CLI:
 
-### Prerequisites
+Take the name after `ionic2-starter-`, and that is the name of the template to be used when using the `ionic start` command below:
 
-Install NodeJS
-
-Install Ionic and Cordova:
-```
-npm install -g ionic cordova
+```bash
+$ sudo npm install -g ionic cordova
+$ ionic start myBlank blank
 ```
 
-### Running
+Then, to run it, cd into `myBlank` and run:
 
-Use ionic to run in the browser
-
+```bash
+$ ionic cordova platform add ios
+$ ionic cordova run ios
 ```
-ionic serve
-```
 
-The site will be available at http://localhost:8100
+Substitute ios for android if not on a Mac.
 
-Note: There may be a CORS issue. I fixed this by installing a Chrome extension to turn off CORS for localhost, but you may also opt to make a proxy.
-
-
-### Building for iOS or Android
-
-Refer to the Ionic Framework [Documentation](https://ionicframework.com/getting-started/)
-
-
-## Authors
-
-* **Drake Witt** - *Maintainer* - [DrakeWitt](https://github.com/DrakeWitt)
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Thanks to everyone at Bryan Station that helped us.
-* Thanks to the wonderful people at LFUCG
