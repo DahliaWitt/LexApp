@@ -1,0 +1,63 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Ordinances
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding id="page2">
+  <ion-card id="ordinances-card21" *ngFor="let ordinace of ordinaces">
+    <ion-list>
+      <ion-item color="none" id="ordinances-list-item3">
+        <ion-avatar item-left>
+          <img src="https://image.freepik.com/free-icon/town-hall_318-27632.jpg"/>
+        </ion-avatar>
+        <h2>
+          {{ordinace?.MatterBodyName}} - {{ordinace?.MatterName}}
+        </h2>
+        <p>{{ordinace?.MatterStatusName}}</p>
+      </ion-item>
+      <ion-item id="ordinances-list-item-container2">
+        <div id="ordinances-markdown2" class="show-list-numbers-and-dots">
+          <p style="margin-top:0px;color:#000000;white-space: initial">
+              {{ordinace.MatterTitle}}
+            <br>
+            <span><strong>Introduced: </strong> {{ordinace?.MatterIntroDate}}	<br></span>
+            <span><strong>On Agenda: </strong> {{ordinace?.MatterAgendaDate}} <br></span>
+            <span><strong>Passsed: </strong> {{ordinace?.MatterPassedDate}} </span>
+          </p>
+        </div>
+      </ion-item>
+      <ion-row no-padding>
+        <ion-col>
+          <button ion-button clear small color="danger" icon-start>
+            <ion-icon name='document'></ion-icon>
+            View
+          </button>
+        </ion-col>
+        <ion-col text-center>
+          <button ion-button clear small color="danger" icon-start>
+            <ion-icon name='mail'></ion-icon>
+            Message
+          </button>
+        </ion-col>
+      </ion-row>
+
+      <!--<ion-item color="assertive" id="ordinances-list-item4">
+        <ion-icon name="document" item-left></ion-icon>
+        View Proposal
+      </ion-item>
+    <ion-item color="assertive" id="ordinances-list-item4">
+      <ion-icon name="document" item-left></ion-icon>
+      Message
+    </ion-item>-->
+  </ion-list>
+  </ion-card>
+
+
+
+
+
+
+  
+</ion-content>
