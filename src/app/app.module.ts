@@ -7,12 +7,16 @@ import { OrdinancesPage } from '../pages/ordinances/ordinances';
 import { MyDistrictPage } from '../pages/my-district/my-district';
 import { CityAnnouncementsPage } from '../pages/city-announcements/city-announcements';
 import { TabsControllerPage } from '../pages/tabs-controller/tabs-controller';
+import { LocationSettingsPage } from '../pages/location-settings/location-settings';
+import { EsriLoaderModule } from 'angular-esri-loader';
 
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { Geolocation } from '@ionic-native/geolocation';
 import { MatterProvider } from '../providers/matter/matter';
 import { LegistarProvider } from '../providers/legistar/legistar';
+import { LocalRepStorageProvider } from '../providers/local-rep-storage/local-rep-storage';
 
 @NgModule({
   declarations: [
@@ -20,11 +24,13 @@ import { LegistarProvider } from '../providers/legistar/legistar';
     OrdinancesPage,
     MyDistrictPage,
     CityAnnouncementsPage,
-    TabsControllerPage
+    TabsControllerPage,
+    LocationSettingsPage
   ],
   imports: [
     BrowserModule,
     HttpModule,
+    EsriLoaderModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
@@ -33,14 +39,17 @@ import { LegistarProvider } from '../providers/legistar/legistar';
     OrdinancesPage,
     MyDistrictPage,
     CityAnnouncementsPage,
-    TabsControllerPage
+    TabsControllerPage,
+    LocationSettingsPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    Geolocation,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     MatterProvider,
-    LegistarProvider
+    LegistarProvider,
+    LocalRepStorageProvider
   ]
 })
 export class AppModule {}

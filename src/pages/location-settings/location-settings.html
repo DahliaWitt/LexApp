@@ -1,0 +1,34 @@
+<!--
+  Generated template for the LocationSettingsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>LocationSettings</ion-title>
+    <ion-buttons end>
+        <button (click)="dismiss()">
+        Exit
+        </button>
+        </ion-buttons>
+  </ion-navbar>
+  
+
+</ion-header>
+
+
+<ion-content padding>
+  <h3>Click the "Use Geolocation" button to find representative or type in your addresss below.</h3>
+  <p>When using Geolocation, please note it will use the district you are in currently.</p>
+  <button ion-button full (click)="getLocation()">Use Geolocation</button>      
+  <hr>
+  <h4 style="text-align: center">or</h4>
+  <ion-item>
+      <ion-input type="text" placeholder="Address" value=""></ion-input>
+    </ion-item>
+  <button ion-button full (click)="presentModal()">Search Address</button>  
+  <hr>
+  {{councilPerson | json}}    
+</ion-content>
