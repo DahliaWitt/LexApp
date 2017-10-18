@@ -28,6 +28,12 @@ export class LegistarProvider {
       .map(res => res.json())
       .catch(this.handleError);
   }
+  testDonger(geometry) {
+    let replacement = encodeURIComponent(JSON.stringify(geometry));
+    return this.http.get('http://maps.lexingtonky.gov/lfucggis/rest/services/political/MapServer/1/query?f=json&where=&returnGeometry=false&spatialRel=esriSpatialRelIntersects&geometry=' + replacement + '&geometryType=esriGeometryPoint&inSR=102100&outFields=DISTRICT%2CREP%2CURL&outSR=102100')
+      .map(res => res.json())
+      .catch(this.handleError);
+  }
 
   handleError(error) {
     console.error(error);

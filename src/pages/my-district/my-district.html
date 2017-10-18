@@ -6,7 +6,45 @@
   </ion-navbar>
 </ion-header>
 <ion-content padding id="page3">
-  <ion-card id="myDistrict-card22">
+    <button ion-button full (click)="presentModal()">Open District Settings</button>    
+  
+    <ion-card id="myDistrict-card22" *ngIf="councilMember">
+        <ion-list>
+          <ion-item color="none" id="myDistrict-list-item5">
+            <ion-avatar item-left>
+              <img/>
+            </ion-avatar>
+            <h2>{{councilMember?.REP}}</h2>
+            <p>
+              District {{councilMember?.DISTRICT}}
+            </p>
+          </ion-item>
+          <!--<ion-item id="myDistrict-list-item-container3">
+            <div id="myDistrict-markdown3" class="show-list-numbers-and-dots">
+              <p style="margin-top:0px;color:#000000; white-space: initial">
+                Jennifer Scutchfield is currently serving her second term as a city councilmember for the Lexington-Fayette Urban County Government in the 7th District and is unopposed for her third term.
+                <br>
+                <a href="#">Read More</a>            
+                <hr>
+                <br>
+                <strong>Contact</strong>
+                <p>200 E. Main St.
+                  Lexington, KY </p> 
+                <p>jscutchfield@lexingtonky.gov</p>
+                <p>(859) 258-3214</p>
+            </div>
+          </ion-item>
+          <ion-item color="assertive" id="myDistrict-list-item6">
+            <ion-icon name="paper-plane" item-left></ion-icon>
+            Send Message
+          </ion-item>-->
+        </ion-list>
+      </ion-card>
+  
+  
+  
+  
+    <!--<ion-card id="myDistrict-card22">
     <ion-list>
       <ion-item color="none" id="myDistrict-list-item5">
         <ion-avatar item-left>
@@ -46,5 +84,5 @@
         Free GED Classes at Eastside Library
         </ion-card-title>
     </ion-card-content>
-  </ion-card>
+  </ion-card>-->
 </ion-content>
