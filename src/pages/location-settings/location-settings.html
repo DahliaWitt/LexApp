@@ -7,10 +7,10 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>LocationSettings</ion-title>
+    <ion-title>Location Settings</ion-title>
     <ion-buttons end>
-        <button (click)="dismiss()">
-        Exit
+        <button (click)="dismiss()" ion-button icon-only>
+          <ion-icon name="close"></ion-icon>
         </button>
         </ion-buttons>
   </ion-navbar>
@@ -25,10 +25,12 @@
   <button ion-button full (click)="getLocation()">Use Geolocation</button>      
   <hr>
   <h4 style="text-align: center">or</h4>
-  <ion-item>
-      <ion-input type="text" placeholder="Address" value=""></ion-input>
-    </ion-item>
-  <button ion-button full (click)="presentModal()">Search Address</button>  
+  <h3>Search Address</h3>
+  <ion-auto-complete [dataProvider]="addressCompleteProvider" (itemSelected)="searchAddress($event)"></ion-auto-complete>  
   <hr>
-  {{councilPerson | json}}    
+  <ion-list>
+    <button ion-button full *ngFor="let location of locations" (click)="setAddress(location)">
+      Select {{ location.value }}
+    </button>  
+  </ion-list>
 </ion-content>

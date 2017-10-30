@@ -3,21 +3,33 @@
     <ion-title>
       My District
     </ion-title>
+    <ion-buttons end>
+      <button (click)="presentModal()" ion-button icon-only>
+        <ion-icon name="settings"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
-<ion-content padding id="page3">
-    <button ion-button full (click)="presentModal()">Open District Settings</button>    
-  
+<ion-content id="page3">
+  <div *ngIf="!councilMember">
+    
+        <h2>To find your council person, tap "Open District Settings"</h2>
+          <button ion-button full (click)="presentModal()">Open District Settings</button>                    
+      
+  </div>
     <ion-card id="myDistrict-card22" *ngIf="councilMember">
         <ion-list>
           <ion-item color="none" id="myDistrict-list-item5">
             <ion-avatar item-left>
-              <img/>
+              <img src="{{(item | async)?.profileImg}}" class="headshot"/>
             </ion-avatar>
-            <h2>{{councilMember?.REP}}</h2>
+            <h2>{{(item | async)?.representative}}</h2>
             <p>
               District {{councilMember?.DISTRICT}}
             </p>
+          </ion-item>
+          <ion-item>
+            <p [innerHtml]="(item | async)?.bio" class="bio"></p>
           </ion-item>
           <!--<ion-item id="myDistrict-list-item-container3">
             <div id="myDistrict-markdown3" class="show-list-numbers-and-dots">
@@ -38,6 +50,7 @@
             <ion-icon name="paper-plane" item-left></ion-icon>
             Send Message
           </ion-item>-->
+              <button ion-button full (click)="openEmail()">Message {{(item | async)?.representative}}</button>              
         </ion-list>
       </ion-card>
   

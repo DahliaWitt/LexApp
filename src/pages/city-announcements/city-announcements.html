@@ -5,24 +5,25 @@
     </ion-title>
   </ion-navbar>
 </ion-header>
-<ion-content padding id="page4">
-  <ion-card>
-    <img src="https://scontent-atl3-1.xx.fbcdn.net/v/t31.0-8/21688502_10154963917553059_3951573075098098673_o.jpg?oh=4e17bca4f99fc0ac6fce82adcc032d52&oe=5A5BCC22"/>
+<ion-content id="page4">
+  <ion-card *ngFor="let post of feed">
+    <img *ngIf="post?.media" src="{{post?.media?.image?.src}}"/>
     <ion-card-content>
-      <ion-card-title>
-        The City of Lexington is Hiring
-        </ion-card-title>
+      <h1>{{post?.story}}</h1>
       <p>
-        All jobs require a CDL. <a href="">lexingtonky.gov/jobs</a>
+          {{post?.message}}
+      </p>
+      <p *ngIf="!post?.message">
+        {{post?.description}}
       </p>
     </ion-card-content>
-  </ion-card>
-  <ion-card>
-    <img src="https://scontent-atl3-1.xx.fbcdn.net/v/t31.0-8/21273478_10154915554243059_8954161632014564325_o.jpg?oh=3307dea112cc1a670ec76040bb96b979&oe=5A566838"/>
-    <ion-card-content>
-      <ion-card-title>
-        All LFUCG offices are closed today for Labor Day. And if you normally have waste collection today, we'll get your carts picked up on Wednesday instead.        
-        </ion-card-title>
-    </ion-card-content>
+    <ion-row no-padding>
+        <ion-col>
+          <button ion-button clear small icon-start (click)="openFB(post)">
+            <ion-icon name='logo-facebook'></ion-icon>
+            View on Facebook
+          </button>
+        </ion-col>
+      </ion-row>
   </ion-card>
 </ion-content>
