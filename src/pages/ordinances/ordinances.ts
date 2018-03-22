@@ -45,14 +45,14 @@ export class OrdinancesPage {
       if(data.length >= 1) {
         loading.dismissAll();
         let url = data[0].MatterAttachmentHyperlink;
-        let browser = this.iab.create(url);
+        this.iab.create(url);
       } else {
         loading.dismissAll();
         const alert = this.alertCtrl.create({
           title: 'No Attachments for This Ordinance',
           buttons: ['Dismiss']
         });
-        alert.present();   
+        alert.present();
       }
     }, error => {
       loading.dismissAll();
@@ -71,15 +71,15 @@ export class OrdinancesPage {
             body: '',
             isHtml: true
           };
-          this.emailComposer.open(email);    
-        })    
+          this.emailComposer.open(email);
+        })
       } else {
         const alert = this.alertCtrl.create({
           title: 'No Council Member Set',
           subTitle: 'Please select district in the settings of the "My District" tab.',
           buttons: ['Dismiss']
         });
-        alert.present();  
+        alert.present();
       }
     }).catch(error => {
       this.errorReporter.showError(error);

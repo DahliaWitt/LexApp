@@ -27,11 +27,9 @@ export class MyDistrictPage {
         this.itemDoc = afs.doc<any>('districts/' + this.councilMember.DISTRICT);
         this.item = this.itemDoc.valueChanges();
         this.item.subscribe(data => {
-          console.log(data);
           this.address = data.email;
           this.localRepStorage.setEmail(data.email);
-        })
-        console.log(this.councilMember.DISTRICT)
+        });
       }
     });
   }
@@ -39,14 +37,12 @@ export class MyDistrictPage {
   presentModal() {
     let modal = this.modalCtrl.create(LocationSettingsPage);
     modal.onDidDismiss(() => {
-      console.log("did dismiss");
       this.localRepStorage.getLocalRep().then(data => {
         this.councilMember = data;
         if(this.councilMember != null) {
           this.itemDoc = this.afs.doc<any>('districts/' + this.councilMember.DISTRICT);
           this.item = this.itemDoc.valueChanges();
           this.item.subscribe(data => {
-            console.log(data);
             this.address = data.email;
             this.localRepStorage.setEmail(data.email);
           })
@@ -63,6 +59,6 @@ export class MyDistrictPage {
       body: '',
       isHtml: true
     };
-    this.emailComposer.open(email);    
+    this.emailComposer.open(email);
   }
 }

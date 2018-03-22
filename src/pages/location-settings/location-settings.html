@@ -6,15 +6,15 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-title>Location Settings</ion-title>
     <ion-buttons end>
-        <button (click)="dismiss()" ion-button icon-only>
-          <ion-icon name="close"></ion-icon>
-        </button>
-        </ion-buttons>
+      <button (click)="dismiss()" ion-button icon-only>
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
-  
+
 
 </ion-header>
 
@@ -22,15 +22,16 @@
 <ion-content padding>
   <h3>Click the "Use Geolocation" button to find representative or type in your addresss below.</h3>
   <p>When using Geolocation, please note it will use the district you are in currently.</p>
-  <button ion-button full (click)="getLocation()">Use Geolocation</button>      
+  <button ion-button full (click)="getLocation()">Use Geolocation</button>
   <hr>
   <h4 style="text-align: center">or</h4>
   <h3>Search Address</h3>
-  <ion-auto-complete [dataProvider]="addressCompleteProvider" (itemSelected)="searchAddress($event)"></ion-auto-complete>  
+  <ion-auto-complete [dataProvider]="addressCompleteProvider"
+                     (itemSelected)="searchAddress($event)"></ion-auto-complete>
   <hr>
   <ion-list>
     <button ion-button full *ngFor="let location of locations" (click)="setAddress(location)">
       Select {{ location.value }}
-    </button>  
+    </button>
   </ion-list>
 </ion-content>
