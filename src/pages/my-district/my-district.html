@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-title>
       My District
     </ion-title>
@@ -12,10 +12,10 @@
 </ion-header>
 <ion-content id="page3">
   <div *ngIf="!councilMember">
-    
+
         <h2>To find your council person, tap "Open District Settings"</h2>
-          <button ion-button full (click)="presentModal()">Open District Settings</button>                    
-      
+          <button ion-button full (click)="presentModal()">Open District Settings</button>
+
   </div>
     <ion-card id="myDistrict-card22" *ngIf="councilMember">
         <ion-list>
@@ -36,12 +36,12 @@
               <p style="margin-top:0px;color:#000000; white-space: initial">
                 Jennifer Scutchfield is currently serving her second term as a city councilmember for the Lexington-Fayette Urban County Government in the 7th District and is unopposed for her third term.
                 <br>
-                <a href="#">Read More</a>            
+                <a href="#">Read More</a>
                 <hr>
                 <br>
                 <strong>Contact</strong>
                 <p>200 E. Main St.
-                  Lexington, KY </p> 
+                  Lexington, KY </p>
                 <p>jscutchfield@lexingtonky.gov</p>
                 <p>(859) 258-3214</p>
             </div>
@@ -50,13 +50,13 @@
             <ion-icon name="paper-plane" item-left></ion-icon>
             Send Message
           </ion-item>-->
-              <button ion-button full (click)="openEmail()">Message {{(item | async)?.representative}}</button>              
+              <button ion-button full (click)="openEmail()">Message {{(item | async)?.representative}}</button>
         </ion-list>
       </ion-card>
-  
-  
-  
-  
+
+
+
+
     <!--<ion-card id="myDistrict-card22">
     <ion-list>
       <ion-item color="none" id="myDistrict-list-item5">
@@ -73,12 +73,12 @@
           <p style="margin-top:0px;color:#000000; white-space: initial">
             Jennifer Scutchfield is currently serving her second term as a city councilmember for the Lexington-Fayette Urban County Government in the 7th District and is unopposed for her third term.
             <br>
-            <a href="#">Read More</a>            
+            <a href="#">Read More</a>
             <hr>
             <br>
             <strong>Contact</strong>
             <p>200 E. Main St.
-              Lexington, KY </p> 
+              Lexington, KY </p>
             <p>jscutchfield@lexingtonky.gov</p>
             <p>(859) 258-3214</p>
         </div>

@@ -5,7 +5,7 @@
  *
  * local-rep-storage.ts
  * Date Created: 10/18/17
- * Date Modified: 10/26/17
+ * Date Modified: 3/22/18
  *
  * Provider that communicates with Legistar
  */
@@ -23,7 +23,7 @@ export class LegistarProvider {
   constructor(public http: Http) {}
 
   getMatters() {
-    return this.http.get('http://webapi.legistar.com/v1/Lexington/Matters?$orderby=MatterId desc&$top=30')
+    return this.http.get('http://webapi.legistar.com/v1/Lexington/Matters?$orderby=MatterId desc&$top=30&$filter=MatterTypeId eq 52 or MatterTypeId eq 53')
       .map(res => res.json())
       .catch(this.handleError);
   }
@@ -32,6 +32,15 @@ export class LegistarProvider {
     return this.http.get('http://webapi.legistar.com/v1/Lexington/Matters/' + matter.MatterId + "/Attachments")
     .map(res => res.json())
     .catch(this.handleError);
+  }
+
+  getEvents() {
+    let d = new Date();
+    d.setMonth(d.getMonth() - 3);
+    let dateString = d.toISOString();
+    return this.http.get("http://webapi.legistar.com/v1/Lexington/Events?$filter=EventDate ge datetime'" + dateString + "'")
+      .map(res => res.json())
+      .catch(this.handleError);
   }
 
   handleError(error) {
