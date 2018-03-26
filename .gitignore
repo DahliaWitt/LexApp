@@ -13,6 +13,9 @@ log.txt
 npm-debug.log*
 *.jks
 
+# Environment variables
+src/environment.ts
+
 .idea/
 .sourcemaps/
 .sass-cache/

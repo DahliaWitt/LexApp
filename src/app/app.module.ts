@@ -19,6 +19,7 @@ import { AddressCompleteProvider } from '../providers/address-complete/address-c
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { AlertController } from 'ionic-angular';
 import { EmailComposer } from '@ionic-native/email-composer';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AngularFireModule } from 'angularfire2';
 import { firebaseConfig } from '../environment';
@@ -26,6 +27,7 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { ErrorReporterProvider } from '../providers/error-reporter/error-reporter';
 import { NgCalendarModule  } from 'ionic2-calendar';
 import {CalendarPage} from "../pages/calendar/calendar";
+import {OnboardingPage} from "../pages/onboarding/onboarding";
 
 
 
@@ -36,7 +38,8 @@ import {CalendarPage} from "../pages/calendar/calendar";
     MyDistrictPage,
     TabsControllerPage,
     LocationSettingsPage,
-    CalendarPage
+    CalendarPage,
+    OnboardingPage
   ],
   imports: [
     BrowserModule,
@@ -45,6 +48,7 @@ import {CalendarPage} from "../pages/calendar/calendar";
     AutoCompleteModule,
     NgCalendarModule,
     IonicModule.forRoot(MyApp),
+    BrowserAnimationsModule,
     IonicStorageModule.forRoot(),
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule
@@ -56,7 +60,8 @@ import {CalendarPage} from "../pages/calendar/calendar";
     MyDistrictPage,
     TabsControllerPage,
     LocationSettingsPage,
-    CalendarPage
+    CalendarPage,
+    OnboardingPage
   ],
   providers: [
     StatusBar,
