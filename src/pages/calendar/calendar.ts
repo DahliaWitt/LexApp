@@ -88,7 +88,7 @@ export class CalendarPage {
       this.svc.isAvailable().then((available: boolean) => {
             if (available) {
               this.svc.show({
-                url: "https://docs.google.com/viewerng/viewer?url=" + event.originalObj.EventAgendaFile,
+                url: event.originalObj.EventAgendaFile,
                 hidden: false,
                 animated: false,
                 transition: 'curl',
@@ -102,7 +102,7 @@ export class CalendarPage {
 
             } else {
               // use InAppBrowser as fallback
-              this.iab.create("https://docs.google.com/viewerng/viewer?url=" + event.originalObj.EventAgendaFile, "_blank");
+              this.iab.create(event.originalObj.EventAgendaFile, "_blank");
             }
           }
         );

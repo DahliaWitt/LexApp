@@ -73,7 +73,7 @@ export class OrdinancesPage {
     this.legistarProvider.getAttachments(matter).subscribe(data => {
       if(data.length >= 1) {
         loading.dismissAll();
-        let url = "https://docs.google.com/viewerng/viewer?url=" + data[0].MatterAttachmentHyperlink;
+        let url = data[0].MatterAttachmentHyperlink;
         this.svc.isAvailable().then((available: boolean) => {
           if (available) {
             this.svc.show({
