@@ -19,6 +19,26 @@ npm install -g ionic cordova
 
 ### Running
 
+The config.xml and environment.ts is missing on purpose as both contain sensitive keys.
+
+For the config.xml, copy the config.example.xml to a new config.xml.
+
+The environment.ts file goes in the /src folder and contains the info for Firebase.
+
+The file should look like:
+```
+export const firebaseConfig = {
+    apiKey: "",
+    authDomain: "",
+    databaseURL: "",
+    projectId: "",
+    storageBucket: "",
+    messagingSenderId: ""
+ };
+
+export const gaKey = "";
+```
+
 Use ionic to run in the browser
 
 ```
