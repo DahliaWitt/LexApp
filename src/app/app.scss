@@ -24,6 +24,19 @@ h2 {
 
 ion-content {
   background-color: #EFEFEF !important;
-  font-family:'Raleway';
 }
 
+// Custom horse icon
+ion-icon {
+  &[class*="lexapp-"] {
+    mask-size: contain;
+    mask-position: 50% 50%;
+    mask-repeat: no-repeat;
+    background: currentColor;
+    width: 1em;
+    height: 1em;
+  }
+  &[class*="lexapp-horse"] {
+    mask-image: url(../assets/horse.svg);
+  }
+}

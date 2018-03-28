@@ -1,4 +1,13 @@
 page-onboarding {
+
+  ion-content {
+    font-family:'Raleway';
+  }
+
+  .scroll-content {
+    padding-top: 0px !important;
+  }
+
   .diag {
     position: absolute;
     z-index: 1;
@@ -25,10 +34,6 @@ page-onboarding {
     font-size:.9em;
   }
 
-  .swiper-pagination-bullet-active {
-    background:#C400FF;
-  }
-
   .swiper-pagination {
     bottom: 12% !important;
   }
@@ -41,5 +46,14 @@ page-onboarding {
     text-align:center;
     cursor:pointer;
     z-index:5;
+  }
+
+  // iPhone X
+  @media only screen
+  and (device-width : 375px)
+  and (device-height : 812px)
+  and (-webkit-device-pixel-ratio : 3) {
+    // Set the skip button higher up
+    bottom: 30px !important;
   }
 }

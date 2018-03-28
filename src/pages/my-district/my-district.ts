@@ -1,26 +1,38 @@
+/**
+ * @author    Drake Witt <dwitt@dranweb.com>
+ * @copyright Copyright (c) 2018
+ * @license   MIT
+ *
+ * my-district.ts
+ * Date Created: 10/18/17
+ * Date Modified: 3/28/18
+ *
+ * View that shows information about a user's council member.
+ */
+
 import { Component } from '@angular/core';
 import { NavController, ModalController } from 'ionic-angular';
-import { LocationSettingsPage } from '../location-settings/location-settings';
-import { LocalRepStorageProvider } from '../../providers/local-rep-storage/local-rep-storage';
 import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { EmailComposer } from '@ionic-native/email-composer';
+import { GoogleAnalytics } from "@ionic-native/google-analytics";
 
+import { LocationSettingsPage } from '../location-settings/location-settings';
+import { LocalRepStorageProvider } from '../../providers/local-rep-storage/local-rep-storage';
 
 @Component({
   selector: 'page-my-district',
   templateUrl: 'my-district.html'
 })
-export class MyDistrictPage {
-  // this tells the tabs component which Pages
-  // should be each tab's root Page
 
+export class MyDistrictPage {
   councilMember;
   private itemDoc: AngularFirestoreDocument<any>;
   item;
   address;
 
+  // Since there is no gov. system (that we know of...) that has biographies, we have a small firebase that contains them.
   constructor(public navCtrl: NavController, public modalCtrl: ModalController, public localRepStorage: LocalRepStorageProvider,
-    private afs: AngularFirestore, public emailComposer: EmailComposer) {
+    private afs: AngularFirestore, public emailComposer: EmailComposer, public ga: GoogleAnalytics) {
     this.localRepStorage.getLocalRep().then(data => {
       this.councilMember = data;
       if(this.councilMember != null) {
@@ -32,6 +44,10 @@ export class MyDistrictPage {
         });
       }
     });
+  }
+
+  ionViewDidEnter() {
+    this.ga.trackView('My District');
   }
 
   presentModal() {

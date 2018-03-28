@@ -28,6 +28,8 @@ import { ErrorReporterProvider } from '../providers/error-reporter/error-reporte
 import { NgCalendarModule  } from 'ionic2-calendar';
 import {CalendarPage} from "../pages/calendar/calendar";
 import {OnboardingPage} from "../pages/onboarding/onboarding";
+import {GoogleAnalytics} from "@ionic-native/google-analytics";
+import {SafariViewController} from "@ionic-native/safari-view-controller";
 
 
 
@@ -67,7 +69,9 @@ import {OnboardingPage} from "../pages/onboarding/onboarding";
     StatusBar,
     SplashScreen,
     Geolocation,
+    GoogleAnalytics,
     InAppBrowser,
+    SafariViewController,
     EmailComposer,
     AlertController,
     {provide: ErrorHandler, useClass: IonicErrorHandler},

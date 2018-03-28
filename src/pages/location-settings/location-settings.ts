@@ -1,7 +1,22 @@
+/**
+ * @author    Drake Witt <dwitt@dranweb.com>
+ * @copyright Copyright (c) 2018
+ * @license   MIT
+ *
+ * location-settings.ts
+ * Date Created: 10/18/17
+ * Date Modified: 3/28/18
+ *
+ * View that gets a user's district by GPS or address.
+ * Just a warning, this page is a mess.
+ */
+
 import { Component } from '@angular/core';
-import { IonicPage, ViewController, NavParams, LoadingController, AlertController } from 'ionic-angular';
+import { ViewController, NavParams, LoadingController, AlertController } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
+import { GoogleAnalytics } from "@ionic-native/google-analytics";
 import { EsriLoaderService } from 'angular-esri-loader';
+
 import { LegistarProvider } from '../../providers/legistar/legistar';
 import { LocalRepStorageProvider } from '../../providers/local-rep-storage/local-rep-storage';
 import { AddressCompleteProvider } from '../../providers/address-complete/address-complete';
@@ -10,36 +25,48 @@ import { AddressCompleteProvider } from '../../providers/address-complete/addres
   selector: 'page-location-settings',
   templateUrl: 'location-settings.html',
 })
-export class LocationSettingsPage {
 
+export class LocationSettingsPage {
   councilPerson;
   searchTerm = "";
   locations = [];
 
-  constructor(public viewCtrl: ViewController, public navParams: NavParams, public geolocation: Geolocation, public esriLoader: EsriLoaderService, public legistar: LegistarProvider,
-    public localRepStorage: LocalRepStorageProvider, public addressCompleteProvider: AddressCompleteProvider, public loading: LoadingController, public alertCtrl: AlertController) {
+  constructor(public viewCtrl: ViewController,
+              public geolocation: Geolocation,
+              public esriLoader: EsriLoaderService,
+              public legistar: LegistarProvider,
+              public localRepStorage: LocalRepStorageProvider,
+              public addressCompleteProvider: AddressCompleteProvider,
+              public loading: LoadingController,
+              public alertCtrl: AlertController,
+              public ga: GoogleAnalytics) {}
+
+  ionViewDidEnter() {
+    this.ga.trackView('Location Settings');
   }
 
-  ionViewDidLoad() { }
-
+  // Use GPS to get location
   getLocation() {
-    console.log("get location");
     const loading = this.loading.create({
       spinner: 'crescent'
     });
     loading.present();
+    // Use the Ionic Native GPS module to get LatLong
     this.geolocation.getCurrentPosition().then((resp) => {
-      console.log("geolocation got");
+      /**
+       * The ArcGIS server won't accept "normal" LatLong...
+       * We have to convert to another projection using their SDK
+       */
       this.esriLoader.load({
         // use a specific version of the API instead of the latest
         url: 'https://js.arcgis.com/3.18/'
       }).then(() => {
-        console.log("esri stuff loaded");
-        // load the map class needed to create a new map
+        // Load just the module we need
         this.esriLoader.loadModules(['esri/geometry/webMercatorUtils']).then(([webMercatorUtils]) => {
-          // create the map at the DOM element in this component
+          // Convert our Lat Long to XY
           var xy = webMercatorUtils.lngLatToXY(resp.coords.longitude, resp.coords.latitude);
-          let obj = { "x": xy[0], "y": xy[1], "spatialReference": { "wkid": 102100 } }
+          // Create object the API wants
+          let obj = { "x": xy[0], "y": xy[1], "spatialReference": { "wkid": 102100 } };
           this.localRepStorage.getCoords(obj).subscribe(
             data => {
               loading.dismissAll();

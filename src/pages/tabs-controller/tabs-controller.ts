@@ -1,5 +1,17 @@
+/**
+ * @author    Drake Witt <dwitt@dranweb.com>
+ * @copyright Copyright (c) 2018
+ * @license   MIT
+ *
+ * tabs-controller.ts
+ * Date Created: 10/18/17
+ * Date Modified: 3/28/18
+ *
+ * Tabs for the application
+ */
+
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+
 import { OrdinancesPage } from '../ordinances/ordinances';
 import { MyDistrictPage } from '../my-district/my-district';
 import { CalendarPage } from "../calendar/calendar";
@@ -9,12 +21,10 @@ import { CalendarPage } from "../calendar/calendar";
   templateUrl: 'tabs-controller.html'
 })
 export class TabsControllerPage {
-  // this tells the tabs component which Pages
-  // should be each tab's root Page
+
   tab1Root: any = OrdinancesPage;
   tab2Root: any = MyDistrictPage;
   tab3Root: any = CalendarPage;
-  constructor(public navCtrl: NavController) {
-  }
 
+  constructor() {}
 }

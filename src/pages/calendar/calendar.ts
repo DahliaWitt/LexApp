@@ -1,13 +1,30 @@
+/**
+ * @author    Drake Witt <dwitt@dranweb.com>
+ * @copyright Copyright (c) 2018
+ * @license   MIT
+ *
+ * calendar.ts
+ * Date Created: 3/10/18
+ * Date Modified: 3/28/18
+ *
+ * Calendar of LFUCG events
+ */
+
 import { Component } from '@angular/core';
-import {AlertController, LoadingController} from 'ionic-angular';
-import {LegistarProvider} from "../../providers/legistar/legistar";
+import { AlertController, LoadingController } from 'ionic-angular';
+import { SafariViewController } from '@ionic-native/safari-view-controller';
+import { InAppBrowser } from "@ionic-native/in-app-browser";
+import {GoogleAnalytics} from "@ionic-native/google-analytics";
 import * as moment from 'moment';
-import {InAppBrowser} from "@ionic-native/in-app-browser";
+
+import {LegistarProvider} from "../../providers/legistar/legistar";
+
 
 @Component({
   selector: 'page-calendar',
   templateUrl: 'calendar.html',
 })
+
 export class CalendarPage {
   eventSource;
   viewTitle;
@@ -16,8 +33,12 @@ export class CalendarPage {
     currentDate: new Date(),
   };
 
-  constructor(public legistar: LegistarProvider, public alertCtrl: AlertController, public iab: InAppBrowser,
-              public loading: LoadingController) { }
+  constructor(public legistar: LegistarProvider,
+              public alertCtrl: AlertController,
+              public svc: SafariViewController,
+              public iab: InAppBrowser,
+              public loading: LoadingController,
+              public ga: GoogleAnalytics) { }
 
   ionViewWillEnter() {
     const loading = this.loading.create({
@@ -50,6 +71,10 @@ export class CalendarPage {
     })
   }
 
+  ionViewDidEnter() {
+    this.ga.trackView('Calendar');
+  }
+
   onViewTitleChanged(title) {
     this.viewTitle = title;
   }
@@ -60,9 +85,28 @@ export class CalendarPage {
     });
     loading.present();
     if(event.originalObj.EventAgendaFile) {
-      let browser = this.iab.create(event.originalObj.EventAgendaFile, "_blank");
+      this.svc.isAvailable().then((available: boolean) => {
+            if (available) {
+              this.svc.show({
+                url: event.originalObj.EventAgendaFile,
+                hidden: false,
+                animated: false,
+                transition: 'curl',
+                enterReaderModeIfAvailable: true,
+                tintColor: '#0959a7'
+              })
+                .subscribe((result: any) => {
+                  },
+                  (error: any) => console.error(error)
+                );
+
+            } else {
+              // use InAppBrowser as fallback
+              this.iab.create(event.originalObj.EventAgendaFile, "_blank");
+            }
+          }
+        );
       loading.dismissAll();
-      browser.on("loadstart");
     } else {
       loading.dismissAll();
       const alert = this.alertCtrl.create({

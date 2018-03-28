@@ -3,31 +3,51 @@
 
     <ion-slide>
       <div class="diag" style="background: url('assets/img/whitebg.svg') no-repeat">
-        <ion-icon ios="ios-analytics" md="md-analytics" color="primary" [@bounce]='state' (@bounce.done)="animationDone($event)"></ion-icon>
+        <ion-icon name="lexapp-horse" color="primary"></ion-icon>
       </div>
       <div [@bounce]='state'>
-        <h2>track your routine</h2>
-        <p>whether it's sets, reps, weight used, you can track it all with our intuitive interface.</p>
+        <h2>Welcome to LexApp!</h2>
+        <p>Swipe right to learn about the app.</p>
       </div>
     </ion-slide>
 
     <ion-slide>
       <div class="diag" style="background: url('assets/img/whitebg.svg') no-repeat">
-        <ion-icon ios="ios-trophy" md="md-trophy" color="primary"></ion-icon>
+        <ion-icon name="clipboard" color="primary"></ion-icon>
       </div>
       <div>
-        <h2>set personal goals</h2>
-        <p>we're all in the gym for a reason: goals. set goals for diet and fitness.</p>
+        <h2>Ordinances</h2>
+        <p>See the Ordinances and Resolutions right from the Ordinance Tab. Check the full docket and the status of the legislation.</p>
       </div>
     </ion-slide>
 
     <ion-slide>
       <div class="diag" style="background: url('assets/img/whitebg.svg') no-repeat">
-        <ion-icon ios="ios-chatboxes" md="md-chatboxes" color="primary"></ion-icon>
+        <ion-icon name="calendar" color="primary"></ion-icon>
       </div>
       <div>
-        <h2>chat with others</h2>
-        <p>inspire and help each other reach fitness and diet goals.</p>
+        <h2>Calendar</h2>
+        <p>The calendar tab shows the upcoming events going on within the Lexington Fayette Urban County Government.</p>
+      </div>
+    </ion-slide>
+
+    <ion-slide>
+      <div class="diag" style="background: url('assets/img/whitebg.svg') no-repeat">
+        <ion-icon name="home" color="primary"></ion-icon>
+      </div>
+      <div>
+        <h2>My District</h2>
+        <p>Learn more about your local council member and your district. Message them about the issues that matter to you.</p>
+      </div>
+    </ion-slide>
+
+    <ion-slide>
+      <div class="diag" style="background: url('assets/img/whitebg.svg') no-repeat">
+        <ion-icon name="thumbs-up" color="primary"></ion-icon>
+      </div>
+      <div>
+        <h2>Jump In!</h2>
+        <button ion-button (click)="skip()">Exit to App</button>
       </div>
     </ion-slide>
 

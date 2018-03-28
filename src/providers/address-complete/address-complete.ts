@@ -1,13 +1,13 @@
 /**
  * @author    Drake Witt <dwitt@dranweb.com>
- * @copyright Copyright (c) 2017
- * @license   Apache-2.0
+ * @copyright Copyright (c) 2018
+ * @license   MIT
  *
- * local-rep-storage.ts
+ * address-complete.ts
  * Date Created: 10/22/17
- * Date Modified: 10/26/17
+ * Date Modified: 3/28/18
  *
- * Autocompleter for the address search box.
+ * Auto-completer for the address search box.
  */
 
 import { AutoCompleteService } from 'ionic2-auto-complete';
@@ -19,10 +19,11 @@ import 'rxjs/add/operator/map'
 export class AddressCompleteProvider implements AutoCompleteService {
   labelAttribute = null;
 
+  // TODO: update Http module
   constructor(private http:Http) {}
 
   getResults(keyword:string) {
-    let replaced = keyword.replace(/ /g, '+');    
+    let replaced = keyword.replace(/ /g, '+');
     return this.http.get("http://maps.lexingtonky.gov/mapit/Map/GetSearchSuggestions?term="+replaced)
       .map(result => {
         return result.json()
